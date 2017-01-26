@@ -1,0 +1,299 @@
+SHELL = @SHELL@
+
+top_srcdir = @top_srcdir@
+abs_top_builddir = @abs_top_builddir@
+package = @PACKAGE_NAME@-@PACKAGE_VERSION@
+
+CC = @CC@
+CFLAGS = @CFLAGS@
+ARFLAGS = @ARFLAGS@
+EXEEXT = @EXEEXT@
+
+LIB_DEP1 = @MEM_LIBDEP@ \
+           ./libaat/libaat.a
+
+LIB_DEPENDS = $(LIB_DEP1) \
+              ./zlib/libz.a \
+              ./zlib/contrib/minizip/libminizip.a \
+              ./libpng/libpng.a \
+              ./jpeg2000/src/libjasper/jpc/.libs/libjpc.a \
+              ./jpeg2000/src/libjasper/base/.libs/libbase.a \
+              ./mdl_g2c/libmdl_g2c.a \
+              ./gd/libgd.a \
+              ./emapf-c/libemapf.a \
+              ./netcdf/libsrc/libnetcdf.a \
+              ./libxml/.libs/libxml2.a
+
+PRJ_NAME = @PACKAGE_NAME@
+
+all: xyz2shp/xyz2shp $(PRJ_NAME)/$(PRJ_NAME) install
+
+xyz2shp/xyz2shp: $(LIB_DEP1)
+	@echo "-----------------------------"
+	@echo "Attempting to compile xyz2shp..."
+	(cd xyz2shp && make)
+	@echo "Finished with xyz2shp"
+	@echo "-----------------------------"
+	@echo ""
+
+$(PRJ_NAME)/$(PRJ_NAME): $(LIB_DEPENDS)
+	@echo "-----------------------------"
+	@echo "Attempting to compile $(PRJ_NAME)..."
+	(cd $(PRJ_NAME) && make)
+	@echo "Finished with $(PRJ_NAME)"
+	@echo "-----------------------------"
+	@echo ""
+
+#####
+# LIBRARIES
+#####
+@MEM_LIBDEP@: ${top_srcdir}/@MEM_NAME@/Makefile
+	@echo "-----------------------------"
+	@echo "Attempting to compile memwatch..."
+	(cd ${top_srcdir}/@MEM_NAME@ && make)
+	@echo "Finished with memwatch..."
+	@echo "-----------------------------"
+	@echo ""
+
+./zlib/libz.a: ./zlib/Makefile
+	@echo "-----------------------------"
+	@echo "Attempting to compile Zlib..."
+	@echo "You may already have zlib (libz.a).  If so, you could change"
+	@echo "   the makefiles in ./degrib to use it, skipping this step"
+	(cd ./zlib @OBJECT_MODE@ && make)
+	@echo "Finished with Zlib..."
+	@echo "-----------------------------"
+	@echo ""
+
+./zlib/contrib/minizip/libminizip.a: ./zlib/contrib/minizip/Makefile
+	@echo "-----------------------------"
+	@echo "Attempting to compile minizip lib (for kmz)..."
+	(cd ./zlib/contrib/minizip @OBJECT_MODE@ && make)
+	@echo "Finished with minizip lib..."
+	@echo "-----------------------------"
+	@echo ""
+
+./libpng/libpng.a: ./libpng/Makefile
+	@echo "-----------------------------"
+	@echo "Attempting to compile libpng..."
+	@echo "You may already have libpng (libpng.a).  If so, you could change"
+	@echo "   the makefiles in ./degrib to use it, skipping this step"
+	(cd ./libpng @OBJECT_MODE@ && make)
+	@echo "Finished with libpng..."
+	@echo "-----------------------------"
+	@echo ""
+
+./jpeg2000/src/libjasper/jpc/.libs/libjpc.a: ./jpeg2000/Makefile
+	@echo "-----------------------------"
+	@echo "Attempting to compile jpeg2000..."
+	@echo "You may already have jasper (libjasper.a).  If so, you could change"
+	@echo "   the makefiles in ./degrib to use it, skipping this step"
+	@echo "What I have provided is the subset of jasper used by the GRIB2 library"
+	@echo "If it doesn't work, try the complete jasper library available at:"
+	@echo "   http://www.ece.uvic.ca/~mdadams/jasper/"
+	@echo "If you use -ljasper.a, you may need to change the makefiles in ./degrib"
+	@echo "-----------------------------"
+	(cd ./jpeg2000 @OBJECT_MODE@ && make)
+	@echo "Finished with jpeg2000..."
+	@echo "-----------------------------"
+	@echo ""
+
+./jpeg2000/src/libjasper/base/.libs/libbase.a: ./jpeg2000/Makefile
+	@echo "-----------------------------"
+	@echo "Attempting to compile jpeg2000..."
+	@echo "You may already have jasper (libjasper.a).  If so, you could change"
+	@echo "   the makefiles in ./degrib to use it, skipping this step"
+	@echo "What I have provided is the subset of jasper used by the GRIB2 library"
+	@echo "If it doesn't work, try the complete jasper library available at:"
+	@echo "   http://www.ece.uvic.ca/~mdadams/jasper/"
+	@echo "If you use -ljasper.a, you may need to change the makefiles in ./degrib"
+	@echo "-----------------------------"
+	(cd ./jpeg2000 @OBJECT_MODE@ && make)
+	@echo "Finished with jpeg2000..."
+	@echo "-----------------------------"
+	@echo ""
+
+./libaat/libaat.a: ./libaat/Makefile
+	@echo "-----------------------------"
+	@echo "Attempting to compile libaat..."
+	(cd libaat && make)
+	@echo "Finished with libaat..."
+	@echo "-----------------------------"
+	@echo ""
+
+./mdl_g2c/libmdl_g2c.a: ./mdl_g2c/Makefile
+	@echo "-----------------------------"
+	@echo "Attempting to compile mdl_g2c..."
+	(cd mdl_g2c && make)
+	@echo "Finished with mdl_g2c..."
+	@echo "-----------------------------"
+	@echo ""
+
+./gd/libgd.a: ./gd/Makefile
+	@echo "-----------------------------"
+	@echo "Attempting to compile gd..."
+#	(cd ./gd && make INCLUDES=-I$(abs_top_builddir)/../include/libpng)
+	(cd ./gd && make)
+	@echo "Finished with gd..."
+	@echo "-----------------------------"
+	@echo ""
+
+./emapf-c/libemapf.a: ./emapf-c/Makefile
+	@echo "-----------------------------"
+	@echo "Attempting to compile emapf-c..."
+	(cd emapf-c &&	make)
+	@echo "Finished with emapf-c..."
+	@echo "-----------------------------"
+	@echo ""
+
+./netcdf/libsrc/libnetcdf.a: ./netcdf/macros.make
+	@echo "-----------------------------"
+	@echo "Attempting to compile netcdf..."
+	(cd netcdf && make)
+	cp ./netcdf/ncdump/ncdump$(EXEEXT) ../bin
+	@echo "Finished with netcdf..."
+	@echo "-----------------------------"
+	@echo ""
+
+./libxml/.libs/libxml2.a: ./libxml/Makefile
+	@echo "-----------------------------"
+	@echo "Attempting to compile libxml..."
+	(cd ./libxml @OBJECT_MODE@ && make libxml2.la)
+	@echo "Finished with libxml..."
+	@echo "-----------------------------"
+	@echo ""
+
+#####
+# Configurables
+#####
+${top_srcdir}/@MEM_NAME@/Makefile: ${top_srcdir}/@MEM_NAME@/configure
+	@echo "-----------------------------"
+	@echo "Attempting to configure memwatch..."
+	(cd ${top_srcdir}/@MEM_NAME@ && ./configure)
+	@echo "-----------------------------"
+	@echo ""
+
+# Following handled by configure.ac
+#./zlib/Makefile: ./zlib/configure
+#	@echo "-----------------------------"
+#	@echo "Attempting to configure Zlib..."
+#	(cd ./zlib && ./configure)
+#	@echo "-----------------------------"
+#	@echo ""
+
+./jpeg2000/Makefile: ./jpeg2000/configure
+	@echo "-----------------------------"
+	@echo "Attempting to configure jpeg2000..."
+	(cd ./jpeg2000 && export CC="$(CC)" && export CFLAGS="$(CFLAGS)" && ./configure)
+	@JPEG2000_LIBTOOL_FIX@
+	@echo "Finished with jpeg2000..."
+	@echo "-----------------------------"
+	@echo ""
+
+# Following handled by configure.ac
+#./libaat/Makefile: ./libaat/configure
+#	@echo "-----------------------------"
+#	@echo "Attempting to configure libaat..."
+#	(cd ./libaat && ./configure)
+#	@echo "-----------------------------"
+#	@echo ""
+
+./emapf-c/Makefile: ./emapf-c/configure
+	@echo "-----------------------------"
+	@echo "Attempting to configure emapf-c..."
+	(cd ./emapf-c && ./configure CC="$(CC)" CFLAGS="$(CFLAGS)" ARFLAGS=$(ARFLAGS))
+	@echo "Finished with emapf-c..."
+	@echo "-----------------------------"
+	@echo ""
+
+./netcdf/macros.make: ./netcdf/configure
+	@echo "-----------------------------"
+	@echo "Attempting to configure netcdf..."
+	(cd ./netcdf && export CC="$(CC)" CFLAGS="$(CFLAGS)" ARFLAGS="$(ARFLAGS) cru" CXX="" FC="" F90="" && ./configure)
+	@echo "Finished with netcdf..."
+	@echo "-----------------------------"
+	@echo ""
+
+./libxml/Makefile: ./libxml/configure
+	@echo "-----------------------------"
+	@echo "Attempting to configure libxml..."
+	(cd ./libxml && export CC="$(CC)" && export CFLAGS="$(CFLAGS)" && \
+                 ./configure --with-minimum --with-tree --with-output --enable-shared=no \
+                 --with-zlib=$(abs_top_builddir)/zlib)
+	@echo "Finished with libxml..."
+	@echo "-----------------------------"
+	@echo ""
+
+#####
+# Regular targets
+#####
+install:
+	@echo "-----------------------------"
+	@echo "Attempting to install xyz2shp..."
+	(cd xyz2shp && make install)
+	@echo "Finished with install of xyz2shp"
+	@echo "Attempting to install $(PRJ_NAME)..."
+	(cd $(PRJ_NAME) && make install)
+	@echo "Finished with install of $(PRJ_NAME)"
+	@echo "-----------------------------"
+
+# clean: ./emapf-c/Makefile ./netcdf/Makefile ./jpeg2000/Makefile ./libxml/Makefile
+clean: ./emapf-c/Makefile ./netcdf/Makefile
+	- (cd ./zlib && make clean && rm -f example$(EXEEXT) minigzip$(EXEEXT))
+	- (cd ./zlib/contrib/minizip && make clean)
+	- (cd ./libpng && make clean)
+	- (cd ./xyz2shp && make clean)
+	(cd ./libaat && make clean)
+	(cd ./mdl_g2c && make clean)
+	- (cd ./gd && make clean)
+	- (cd ./emapf-c && make clean)
+	- (cd ./netcdf && make clean)
+	(cd ./dwmllib && make clean)
+	- (cd ./degrib && make clean)
+# Following gave problems in cygwin/mingw environment
+#	(cd ./jpeg2000 && make clean)
+#	(cd ./libxml && make clean)
+	rm -f netcdf/ncdump/ncdump$(EXEEXT)
+	rm -f netcdf/ncgen/ncgen$(EXEEXT)
+	rm -r -f *.bak
+
+# Note: This depends on the "Configurable's"
+#distclean: ./emapf-c/Makefile ./netcdf/Makefile ./jpeg2000/Makefile ./libxml/Makefile
+distclean: ./emapf-c/Makefile ./netcdf/Makefile
+	- (cd ./zlib && make distclean)
+	- (cd ./zlib/contrib/minizip && make distclean)
+	- (cd ./libpng && make distclean)
+	- (cd ./xyz2shp && make distclean)
+	(cd ./libaat && make distclean)
+	(cd ./mdl_g2c && make distclean)
+	- (cd ./gd && make distclean)
+	- (cd ./emapf-c && make distclean)
+	- (cd ./netcdf && make distclean && rm macros.make)
+# ./dwmllib didn't implement distclean
+	(cd ./dwmllib && make clean)
+	- (cd ./degrib && make distclean)
+# Following gave problems in cygwin/mingw environment
+#	(cd ./jpeg2000 && make distclean)
+	(cd ./jpeg2000/ && rm -rf config.log config.status libtool jasper.spec Makefile autom4te.cache)
+	(cd ./jpeg2000/src/ && rm -f Makefile)
+	(cd ./jpeg2000/src/libjasper/ && rm -rf *.o *.lo *.la .deps .libs Makefile)
+	(cd ./jpeg2000/src/libjasper/base && rm -rf *.o *.lo *.la .libs .deps Makefile)
+	(cd ./jpeg2000/src/libjasper/jpc && rm -rf *.o *.lo *.la .libs .deps Makefile)
+	(cd ./jpeg2000/src/libjasper/include && rm -f Makefile)
+	(cd ./jpeg2000/src/libjasper/include/jasper && rm -f Makefile stamp-h1 jas_config.h jas_config.h.in~)
+# Following gave problems in cygwin/mingw environment
+#	(cd ./libxml && make distclean)
+	(cd ./libxml && rm -rf *.o *.lo *.pc config.status xml2-config .deps Makefile libtool config.h COPYING COPYING.lnk config.log *.la .libs stamp-h1 libxml2.spec)
+	(cd ./libxml/xstc && rm -f Makefile)
+	(cd ./libxml/python && rm -rf setup.py Makefile .deps)
+	(cd ./libxml/python/tests && rm -f Makefile)
+	(cd ./libxml/example && rm -rf .deps Makefile)
+	(cd ./libxml/doc && rm -f Makefile)
+	(cd ./libxml/doc/devhelp && rm -f Makefile)
+	(cd ./libxml/doc/examples && rm -rf .deps Makefile)
+	(cd ./libxml/include && rm -f Makefile)
+	(cd ./libxml/include/libxml && rm -f Makefile)
+	rm -f netcdf/ncdump/ncdump$(EXEEXT)
+	rm -f netcdf/ncgen/ncgen$(EXEEXT)
+	rm -r -f *.bak config.status config.log Makefile autom4te.cache
+
