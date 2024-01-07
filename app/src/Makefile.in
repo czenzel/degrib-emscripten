@@ -201,7 +201,7 @@ ${top_srcdir}/@MEM_NAME@/Makefile: ${top_srcdir}/@MEM_NAME@/configure
 	@echo "-----------------------------"
 	@echo "Attempting to configure libxml..."
 	(cd ./libxml && emconfigure \
-                 ./configure --with-minimum --with-tree --with-output --enable-shared=no \
+                 ./configure --host none --with-minimum --with-tree --with-output --enable-shared=no \
                  --with-zlib=$(abs_top_builddir)/zlib)
 	@echo "Finished with libxml..."
 	@echo "-----------------------------"
