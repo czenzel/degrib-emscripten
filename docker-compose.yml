@@ -4,3 +4,5 @@ services:
     degrib-emscripten:
         image: czenzel/degrib-emscripten
         build: .
+        volumes:
+            - "./build:/build"
