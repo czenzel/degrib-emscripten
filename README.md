@@ -1,4 +1,4 @@
-# Emscripten Project
+# Emscripten Project - NWS DeGRIB
 
 ## National Weather Service DeGRIB for Emscripten (Javascript/WASM)
 
