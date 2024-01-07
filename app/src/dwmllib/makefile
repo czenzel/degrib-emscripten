@@ -2,8 +2,8 @@
 
 # Set by calling makefile CC='$(CC)'
 # Set by calling makefile CFLAGS='$(CFLAGS)'
-AR=ar
-RANLIB=ranlib
+AR=emar
+RANLIB=emranlib
 ARFLAGS=ruv
 LIBNAME=dwml
 LIBA=lib$(LIBNAME).a
