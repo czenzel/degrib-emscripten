@@ -213,7 +213,8 @@ $(PRJ_DLL): $(STUB_OBJECTS) $(LIB_DEPENDS) $(H_SOURCES)
 	$(CC) @DLLFLAGS@ $(STUB_OBJECTS) $(STUB_LIB) -o $(PRJ_DLL)
 	$(STRIP) $(STRIP_FLAGS) $(PRJ_DLL)
 
-LIBGD_RANLIB: emranlib ../gd/libgd.a
+LIBGD_RANLIB: 
+    emranlib ../gd/libgd.a
 
 $(PRJ_NAME): $(C_OBJECTS) $(C_MAIN) $(LIB_DEPENDS) $(H_SOURCES)
 	$(CC) $(C_MAIN) $(CFLAGS) $(LD_FLAGS) $(C_OBJECTS) $(STD_LIB) -o $(PRJ_NAME)
