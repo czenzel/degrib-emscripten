@@ -270,7 +270,7 @@ PATH_SEPARATOR = @PATH_SEPARATOR@
 PTHREAD_CC = @PTHREAD_CC@
 PTHREAD_CFLAGS = @PTHREAD_CFLAGS@
 PTHREAD_LIBS = @PTHREAD_LIBS@
-RANLIB = emar
+RANLIB = emranlib
 SET_MAKE = @SET_MAKE@
 SHELL = @SHELL@
 STRIP = @STRIP@
@@ -325,6 +325,7 @@ libgd_la_LDFLAGS = -version-info 2:0:0
 LDADD = ./libgd.la
 all: config.h
 	$(MAKE) $(AM_MAKEFLAGS) all-recursive
+	$(RANLIB) libgd.a
 
 .SUFFIXES:
 .SUFFIXES: .c .lo .o .obj
