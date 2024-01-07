@@ -242,11 +242,6 @@ $(TCL_NAME): $(GUI_OBJECTS) $(GUI_MAIN) $(LIB_DEPENDS) $(H_SOURCES)
 # and installed without Tcl/Tk).
 install: $(PRJ_NAME) $(CLOCK_NAME) $(DP_NAME) $(DRAWSHP_NAME)
 	cp $(PRJ_NAME)$(EXEEXT) ../../bin
-	cp $(CLOCK_NAME)$(EXEEXT) ../../bin
-	cp $(DP_NAME)$(EXEEXT) ../../bin
-	cp $(DRAWSHP_NAME)$(EXEEXT) ../../bin
-	cp $(TCL_NAME)$(EXEEXT) ../../bin
-	cp $(TK_NAME)$(EXEEXT) ../../bin
 
 clean:
 	rm -f *.o *.bak *.BAK *.obj
