@@ -3,6 +3,6 @@ version: '3.1'
 services:
     degrib-emscripten:
         image: czenzel/degrib-emscripten
-        build: .
+        build: degrib-emscripten
         volumes:
             - "./build:/build"
