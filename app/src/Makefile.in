@@ -4,7 +4,8 @@ top_srcdir = @top_srcdir@
 abs_top_builddir = @abs_top_builddir@
 package = @PACKAGE_NAME@-@PACKAGE_VERSION@
 
-CC = @CC@
+CC = emcc
+AR = emar
 CFLAGS = @CFLAGS@
 ARFLAGS = @ARFLAGS@
 EXEEXT = @EXEEXT@
