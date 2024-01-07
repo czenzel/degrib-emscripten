@@ -126,6 +126,7 @@ $(PRJ_NAME)/$(PRJ_NAME): $(LIB_DEPENDS)
 	@echo "Attempting to compile gd..."
 #	(cd ./gd && make INCLUDES=-I$(abs_top_builddir)/../include/libpng)
 	(cd ./gd && make)
+	(cd ./gd && emranlib libgd.a)
 	@echo "Finished with gd..."
 	@echo "-----------------------------"
 	@echo ""
