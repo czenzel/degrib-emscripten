@@ -1,5 +1,7 @@
 # Emscripten Project - NWS DeGRIB
 
+![DeGRIB inside Node.JS](images/2024-01-07_02-20-47.png)
+
 ## National Weather Service DeGRIB for Emscripten (Javascript/WASM)
 
 The National Weather Service's DEGRIB application is a powerful tool designed for meteorologists and weather enthusiasts. It enables users to decode GRIB (Gridded Binary) files, a standard format used for transmitting weather data such as forecasts and observational data. The DEGRIB application translates these complex files into a more accessible format, allowing users to view and analyze meteorological data in a user-friendly way. It supports a wide range of data types, including temperature, wind, precipitation, and atmospheric pressure, making it an invaluable resource for understanding and predicting weather patterns. The application is known for its accuracy, reliability, and comprehensive coverage of weather data, making it an essential tool for professionals in meteorology and related fields.
