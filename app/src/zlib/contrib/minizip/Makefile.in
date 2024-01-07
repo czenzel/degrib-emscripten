@@ -1,4 +1,4 @@
-CC=@CC@
+CC=emcc
 CFLAGS=-O -I../.. @DWIN32@
 
 UNZ_OBJS = miniunz.o unzip.o ioapi.o @MINIZIP32@ ../../libz.a
@@ -20,7 +20,7 @@ minizip:  $(ZIP_OBJS)
 	$(CC) $(CFLAGS) -o $@ $(ZIP_OBJS)
 
 libminizip.a:  $(LIB_OBJS)
-	ranlib libminizip.a
+	emranlib libminizip.a
 
 test:	miniunz minizip
 	./minizip test readme.txt
