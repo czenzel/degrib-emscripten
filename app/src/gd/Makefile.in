@@ -324,8 +324,8 @@ libgd_la_SOURCES = gd.c gdfx.c gd_security.c gd_gd.c gd_gd2.c gd_io.c gd_io_dp.c
 libgd_la_LDFLAGS = -version-info 2:0:0
 LDADD = ./libgd.la
 all: config.h
-	$(MAKE) $(AM_MAKEFLAGS) all-recursive
-	$(RANLIB) libgd.a
+	$(MAKE) $(AM_MAKEFLAGS) all-recursive \
+	emranlib libgd.a
 
 .SUFFIXES:
 .SUFFIXES: .c .lo .o .obj

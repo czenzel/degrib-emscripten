@@ -201,7 +201,7 @@ LIB_DEPENDS = ../emapf-c/libemapf.a ../degrib-core/libdegrib-core.a \
 # TARGETS
 ############################
 #all: $(PRJ_NAME) $(CLOCK_NAME) $(DP_NAME) $(DRAWSHP_NAME) $(TCL_NAME) $(TK_NAME) $(PRJ_DLL)
-all: LIBGD_RANLIB $(PRJ_NAME) 
+all: $(PRJ_NAME) 
 
 # Let's not talk about emscripten yet: $(CLOCK_NAME) $(DP_NAME) $(DRAWSHP_NAME) $(TCL_NAME) $(TK_NAME)
 
@@ -212,9 +212,6 @@ $(PRJ_DLL): $(STUB_OBJECTS) $(LIB_DEPENDS) $(H_SOURCES)
 #	$(CC) -shared $(STUB_OBJECTS) $(STUB_LIB) -o $(PRJ_DLL)
 	$(CC) @DLLFLAGS@ $(STUB_OBJECTS) $(STUB_LIB) -o $(PRJ_DLL)
 	$(STRIP) $(STRIP_FLAGS) $(PRJ_DLL)
-
-LIBGD_RANLIB: 
-    emranlib ../gd/libgd.a
 
 $(PRJ_NAME): $(C_OBJECTS) $(C_MAIN) $(LIB_DEPENDS) $(H_SOURCES)
 	$(CC) $(C_MAIN) $(CFLAGS) $(LD_FLAGS) $(C_OBJECTS) $(STD_LIB) -o $(PRJ_NAME)
