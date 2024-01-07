@@ -6,3 +6,5 @@ export RANLIB=emranlib
 
 emconfigure ./configure --host none
 emmake make
+
+cp degrib/degrib /build/degrib.js
