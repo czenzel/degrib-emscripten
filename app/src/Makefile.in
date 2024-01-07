@@ -141,7 +141,6 @@ $(PRJ_NAME)/$(PRJ_NAME): $(LIB_DEPENDS)
 	@echo "-----------------------------"
 	@echo "Attempting to compile netcdf..."
 	(cd netcdf && make)
-	cp ./netcdf/ncdump/ncdump$(EXEEXT) ../bin
 	@echo "Finished with netcdf..."
 	@echo "-----------------------------"
 	@echo ""
